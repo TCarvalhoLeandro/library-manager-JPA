@@ -1,5 +1,6 @@
 package com.leandro.library_manager_JPA.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -15,7 +16,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_emprestimo")
-public class Emprestimo {
+public class Emprestimo implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
