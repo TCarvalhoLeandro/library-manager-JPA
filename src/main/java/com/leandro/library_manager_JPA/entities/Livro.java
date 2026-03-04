@@ -29,15 +29,19 @@ public class Livro implements Serializable{
 	private Integer anoPublicacao;
 	private boolean disponivel;
 	
+	
+	// Muitos livros para um autor
 	@ManyToOne //Cria a chave estrangeira no banco
 	@JoinColumn(name = "autor_id")
 	private Autor autor;
+	
 	
 	public Livro() {
 		
 	}
 
-	public Livro(String titulo, String isbn, Integer anoPublicacao, boolean disponivel, Autor autor) {
+	public Livro(Integer id, String titulo, String isbn, Integer anoPublicacao, boolean disponivel, Autor autor) {
+		this.id = id;
 		this.titulo = titulo;
 		this.isbn = isbn;
 		this.anoPublicacao = anoPublicacao;

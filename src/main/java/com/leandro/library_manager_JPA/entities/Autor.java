@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,8 +32,11 @@ public class Autor  implements Serializable{
 	
 	// Relacionamento Inverso: Um autor tem VÁRIOS livros
     // "mappedBy" avisa que quem manda na relação é o atributo "autor" lá na classe Livro
+	@JsonIgnore
 	@OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)// Inicializa a lista para evitar NullPointerException
 	private List<Livro> livros = new ArrayList<>();
+	
+	
 	private String nacionalidade;
 	private LocalDate dataNascimento;
 	
@@ -64,11 +69,9 @@ public class Autor  implements Serializable{
 	public List<Livro> getLivros() {
 		return livros;
 	}
-
-	public void setLivros(List<Livro> livros) {
-		this.livros = livros;
-	}
-
+    
+	// Em uma coleção só pode o get
+	
 	public String getNacionalidade() {
 		return nacionalidade;
 	}
