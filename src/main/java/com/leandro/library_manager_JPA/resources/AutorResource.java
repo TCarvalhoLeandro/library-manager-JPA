@@ -25,6 +25,7 @@ public class AutorResource {
 	@Autowired
 	private AutorService service;
 
+	// 1
 	// Metodo que vai na camada service busca todos os autores e retorna pra quem chamou
 	@GetMapping
 	public ResponseEntity<List<Autor>> findAll(){
@@ -32,6 +33,7 @@ public class AutorResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	// 2
 	// Metodo que vai na camada service busca autor por id retorna pra quem chamou
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Autor> findById(@PathVariable Long id){
@@ -39,6 +41,7 @@ public class AutorResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	// 3
 	// Metodo que vai na camada service e chama o metodo insert para inserir um Autor
 	@PostMapping
 	public ResponseEntity<Autor> insert(@RequestBody Autor autor){
@@ -48,7 +51,7 @@ public class AutorResource {
 				buildAndExpand(autor.getId()).toUri();
 		return ResponseEntity.created(uri).body(autor);
 	}
-	
+	 // 4
 	// Metodo que vai na camda service e chama o metodo delete para deletar um autor
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
@@ -56,6 +59,7 @@ public class AutorResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	// 5
 	// Metodo que vai na camda service e chama o metodo update para atualizar um autor
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Autor> update(@PathVariable Long id, @RequestBody Autor obj){

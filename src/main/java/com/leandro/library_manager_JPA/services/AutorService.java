@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.leandro.library_manager_JPA.entities.Autor;
 import com.leandro.library_manager_JPA.repositories.AutorRepository;
+import com.leandro.library_manager_JPA.services.exceptions.ResourceNotFoundException;
 
 @Service // Registra essa classe como componente do spring
 public class AutorService {
@@ -24,7 +25,7 @@ public class AutorService {
 	// Metodo que vai na camada repository busca autor por id retorna pra resource
 	public Autor findById(Long id) {
 		Optional<Autor> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	// Metodo para inserir no banco de dados um novo objeto do tipo Autor
@@ -34,11 +35,18 @@ public class AutorService {
 	
 	// Metodo para deletar do banco de dados um objeto do tipo Autor
 	public void delete(Long id) {
+		if(!repository.existsById(id))
+			throw new ResourceNotFoundException(id);
+		
 		repository.deleteById(id);
+		
 	}
 	
 	// Metodo para atualizar no banco de dados um objeto do tipo Autor
 	public Autor update(Long id, Autor autorNovo) {
+		if(!repository.existsById(id)) {
+			throw new ResourceNotFoundException(id);
+		}
 		Autor autor = repository.getReferenceById(id);
 		updateData(autor, autorNovo);
 		return repository.save(autor);
