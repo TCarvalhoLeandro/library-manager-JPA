@@ -5,18 +5,26 @@ import com.leandro.library_manager_JPA.entities.Livro;
 public class LivroDTO {
 
 	private String titulo;
+	private Integer quantidade;
 	private String isbn;
 	private Integer anoPublicacao;
+	private boolean disponivel;
+	
+	// A GRANDE DIFERENÇA
+    // Na Entidade, isso é: private Autor autor;
+    // No DTO, nós simplificamos para:
 	private Long autorId;// Mantemos apenas o ID para vincular
 	
 	public LivroDTO() {
 		
 	}
 
-	public LivroDTO(String titulo, String isbn, Integer anoPublicacao, Long autorId) {
+	public LivroDTO(String titulo, Integer quantidade, String isbn, Integer anoPublicacao, boolean disponivel, Long autorId) {
 		this.titulo = titulo;
+		this.quantidade = quantidade;
 		this.isbn = isbn;
 		this.anoPublicacao = anoPublicacao;
+		this.disponivel = disponivel;
 		this.autorId = autorId;
 	}
 	
@@ -39,6 +47,14 @@ public class LivroDTO {
 		this.titulo = titulo;
 	}
 
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
 	public String getIsbn() {
 		return isbn;
 	}
@@ -53,6 +69,18 @@ public class LivroDTO {
 
 	public void setAnoPublicacao(Integer anoPublicacao) {
 		this.anoPublicacao = anoPublicacao;
+	}
+	
+	public boolean getDisponivel() {
+		return disponivel;
+	}
+
+	public boolean isDisponivel() {
+		return disponivel;
+	}
+
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
 	}
 
 	public Long getAutorId() {

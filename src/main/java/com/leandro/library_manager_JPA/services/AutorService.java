@@ -17,23 +17,23 @@ public class AutorService {
 	@Autowired
 	private AutorRepository repository; // Dependencia de AutorRepository
 	
-	// Metodo que vai na camada repository busca todos os autores e retorna pra resource
+	// 1 Metodo que vai na camada repository busca todos os autores e retorna pra resource
 	public List<Autor> findAll(){
 		return repository.findAll();
 	}
 	
-	// Metodo que vai na camada repository busca autor por id retorna pra resource
+	// 2 Metodo que vai na camada repository busca autor por id retorna pra resource
 	public Autor findById(Long id) {
 		Optional<Autor> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
-	// Metodo para inserir no banco de dados um novo objeto do tipo Autor
+	// 3 Metodo para inserir no banco de dados um novo objeto do tipo Autor
 	public Autor insert(Autor autor) {
 		return repository.save(autor);
 	}
 	
-	// Metodo para deletar do banco de dados um objeto do tipo Autor
+	// 4 Metodo para deletar do banco de dados um objeto do tipo Autor
 	public void delete(Long id) {
 		if(!repository.existsById(id))
 			throw new ResourceNotFoundException(id);
@@ -42,7 +42,7 @@ public class AutorService {
 		
 	}
 	
-	// Metodo para atualizar no banco de dados um objeto do tipo Autor
+	// 5 Metodo para atualizar no banco de dados um objeto do tipo Autor
 	public Autor update(Long id, Autor autorNovo) {
 		if(!repository.existsById(id)) {
 			throw new ResourceNotFoundException(id);
