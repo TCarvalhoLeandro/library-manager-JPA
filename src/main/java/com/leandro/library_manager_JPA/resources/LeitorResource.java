@@ -15,21 +15,22 @@ import com.leandro.library_manager_JPA.services.LeitorService;
 @RestController
 @RequestMapping(value = "/leitores")
 public class LeitorResource {
-	
+
 	@Autowired
 	private LeitorService service;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Leitor>> findAll(){
+	public ResponseEntity<List<Leitor>> findAll() {
 		List<Leitor> leitores = service.findAll();
 		return ResponseEntity.ok().body(leitores);
 	}
-	
-	// Metodo que chama service para retornar um Leitor por id do repository (banco) para uma requisição web
-		@GetMapping(value="/{id}")
-		public ResponseEntity<Leitor> findById(@PathVariable Long id) {
-			Leitor obj = service.findById(id);
-			return ResponseEntity.ok().body(obj);
-		}
-	
+
+	// Metodo que chama service para retornar um Leitor por id do repository (banco)
+	// para uma requisição web
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Leitor> findById(@PathVariable Long id) {
+		Leitor obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+
 }

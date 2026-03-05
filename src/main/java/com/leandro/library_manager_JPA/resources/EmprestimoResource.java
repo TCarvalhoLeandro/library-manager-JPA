@@ -18,17 +18,18 @@ public class EmprestimoResource {
 
 	@Autowired
 	private EmprestimoService service;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Emprestimo>> findAll(){
+	public ResponseEntity<List<Emprestimo>> findAll() {
 		List<Emprestimo> emprestimo = service.findAll();
 		return ResponseEntity.ok().body(emprestimo);
 	}
-	
-	// Metodo que chama service para retornar um Emprestimo por id do repository (banco) para uma requisição web
-			@GetMapping(value="/{id}")
-			public ResponseEntity<Emprestimo> findById(@PathVariable Long id) {
-				Emprestimo obj = service.findById(id);
-				return ResponseEntity.ok().body(obj);
-			}
+
+	// Metodo que chama service para retornar um Emprestimo por id do repository
+	// (banco) para uma requisição web
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Emprestimo> findById(@PathVariable Long id) {
+		Emprestimo obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
 }

@@ -14,14 +14,15 @@ public class EmprestimoService {
 
 	@Autowired
 	private EmprestimoRepository repository;
-	
-	public List<Emprestimo> findAll(){
+
+	public List<Emprestimo> findAll() {
 		return repository.findAll();
 	}
-	
-	// Metodo que vai na camada repository busca Emprestimo por id retorna pra resource
-			public Emprestimo findById(Long id) {
-				Optional<Emprestimo> obj = repository.findById(id);
-				return obj.get();
-			}
+
+	// Metodo que vai na camada repository busca Emprestimo por id retorna pra
+	// resource
+	public Emprestimo findById(Long id) {
+		Optional<Emprestimo> obj = repository.findById(id);
+		return obj.get();
+	}
 }

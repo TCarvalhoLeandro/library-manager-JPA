@@ -1,0 +1,5 @@
+{
+"nome": "José de Alencar",
+"nacionalidade": "Brasileiro",
+"dataNascimento": "1829-05-01"
+}

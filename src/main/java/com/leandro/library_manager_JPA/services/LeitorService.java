@@ -23,9 +23,9 @@ public class LeitorService implements Serializable{
 	}
 	
 	// Metodo que vai na camada repository busca Leitor por id retorna pra resource
-		public Leitor findById(Long id) {
-			Optional<Leitor> obj = repository.findById(id);
-			return obj.get();
-		}
+	public Leitor findById(Long id) {
+		Optional<Leitor> obj = repository.findById(id);
+		return obj.get();
+	}
 
 }

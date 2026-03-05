@@ -23,6 +23,7 @@ public class Livro implements Serializable{
 	private Long id;
 	
 	private String titulo;
+	private Integer quantidade;
 	
 	@Column(unique = true)// Garante que nao cadastre o mesmo ISBN duas vezes
 	private String isbn;
@@ -40,9 +41,10 @@ public class Livro implements Serializable{
 		
 	}
 
-	public Livro(Long id, String titulo, String isbn, Integer anoPublicacao, boolean disponivel, Autor autor) {
+	public Livro(Long id, String titulo, Integer quantidade, String isbn, Integer anoPublicacao, boolean disponivel, Autor autor) {
 		this.id = id;
 		this.titulo = titulo;
+		this.quantidade = quantidade;
 		this.isbn = isbn;
 		this.anoPublicacao = anoPublicacao;
 		this.disponivel = disponivel;
@@ -63,6 +65,15 @@ public class Livro implements Serializable{
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+	
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public String getIsbn() {

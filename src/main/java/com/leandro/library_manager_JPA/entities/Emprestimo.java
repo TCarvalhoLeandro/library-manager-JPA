@@ -13,42 +13,39 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "tb_emprestimo")
-public class Emprestimo implements Serializable{
+public class Emprestimo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	
-	
-    @Column(nullable = false)// Obriga a criar um Emprestimo com uma data diferente de null
+
+	@Column(nullable = false) // Obriga a criar um Emprestimo com uma data diferente de null
 	private LocalDate dataEmprestimo;
-	
- 
-    @Column(nullable = false)// Obriga a criar um Emprestimo com uma data de previsao de entrega diferente de null
+
+	@Column(nullable = false) // Obriga a criar um Emprestimo com uma data de previsao de entrega diferente de
+								// null
 	private LocalDate dataPrevisaoEntrega;
-	
+
 	private LocalDate dataEntrega;
-	
+
 	@ManyToOne // Relacionamento: quem pegou?
 	@JoinColumn(name = "leitor_id", nullable = false)
 	private Leitor leitor;
-	
-	@ManyToOne// Relacionamento: o que foi pego?
+
+	@ManyToOne // Relacionamento: o que foi pego?
 	@JoinColumn(name = "livro_id", nullable = false)
 	private Livro livro;
-	
+
 	public Emprestimo() {
-		
+
 	}
 
-	
 	// Construtor com logica de negocio
-	public Emprestimo(Long id,Leitor leitor, Livro livro) {
+	public Emprestimo(Long id, Leitor leitor, Livro livro) {
 		this.Id = id;
 		this.dataEmprestimo = LocalDate.now();// data de hoje
 		this.dataPrevisaoEntrega = LocalDate.now().plusDays(15);// prazo de 15 dias para entrega
@@ -57,72 +54,58 @@ public class Emprestimo implements Serializable{
 		this.livro = livro;
 	}
 
-
 	public Long getId() {
 		return Id;
 	}
-
 
 	public void setId(Long id) {
 		Id = id;
 	}
 
-
 	public LocalDate getDataEmprestimo() {
 		return dataEmprestimo;
 	}
-
 
 	public void setDataEmprestimo(LocalDate dataEmprestimo) {
 		this.dataEmprestimo = dataEmprestimo;
 	}
 
-
 	public LocalDate getDataPrevisaoEntrega() {
 		return dataPrevisaoEntrega;
 	}
-
 
 	public void setDataPrevisaoEntrega(LocalDate dataPrevisaoEntrega) {
 		this.dataPrevisaoEntrega = dataPrevisaoEntrega;
 	}
 
-
 	public LocalDate getDataEntrega() {
 		return dataEntrega;
 	}
-
 
 	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
 
-
 	public Leitor getLeitor() {
 		return leitor;
 	}
-
 
 	public void setLeitor(Leitor leitor) {
 		this.leitor = leitor;
 	}
 
-
 	public Livro getLivro() {
 		return livro;
 	}
-
 
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
 
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(Id);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -135,17 +118,13 @@ public class Emprestimo implements Serializable{
 		Emprestimo other = (Emprestimo) obj;
 		return Objects.equals(Id, other.Id);
 	}
-	
-	
+
 	// Método utilitário para saber se está atrasado
 	public boolean EntregaAtrasada() {
-		if(dataEntrega != null) {
+		if (dataEntrega != null) {
 			return false;// Já devolveu, não está atrasado
 		}
 		return LocalDate.now().isAfter(dataPrevisaoEntrega);
 	}
-	
-	
-	
 
 }
