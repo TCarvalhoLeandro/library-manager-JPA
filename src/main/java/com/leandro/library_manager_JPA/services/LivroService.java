@@ -22,19 +22,23 @@ public class LivroService {
 	@Autowired
 	private AutorRepository autorRepository;
 
-	// 1 Metodo que vai na camada repository busca todos os livros e retorna pra
-	// resource
+	/*
+		1 Metodo que vai na camada repository busca todos os livros e retorna pra resource
+	*/
 	public List<Livro> findAll() {
 		return livroRepository.findAll();
 	}
 
-	// 2 Metodo que vai na camada repository busca livro por id retorna pra resource
+	/*
+		2 Metodo que vai na camada repository busca livro por id retorna pra resource
+	*/
 	public Livro findById(Long id) {
 		Optional<Livro> obj = livroRepository.findById(id);
 		return obj.get();
 	}
-
-	// 3 Metodo para inserir no banco de dados um novo objeto do tipo Livro
+	/*
+	 	3 Metodo para inserir no banco de dados um novo objeto do tipo Livro
+	 */
 	public Livro insert(LivroDTO livroDTO) {
 		// Busca o Autor pelo ID que veio no DTO se nao encontrar lança uma exceção
 		Autor obj = autorRepository.findById(livroDTO.getAutorId())
@@ -52,7 +56,9 @@ public class LivroService {
 		return livroRepository.save(livro);
 	}
 
-	// 4 Metodo para deletar do banco de dados um objeto do tipo Livro
+	/*
+	  	4 Metodo para deletar do banco de dados um objeto do tipo Livro
+	 */
 	public void delete(Long id) {
 		if (!livroRepository.existsById(id))
 			throw new ResourceNotFoundException(id);
@@ -61,7 +67,9 @@ public class LivroService {
 
 	}
 
-	// 5 Metodo para atualizar no banco de dados um objeto do tipo Livro
+	/*
+	 	5 Metodo para atualizar no banco de dados um objeto do tipo Livro
+	 */
 	public LivroDTO update(Long id, LivroDTO livroDTO) {
 		if (!livroRepository.existsById(id)) {
 			throw new ResourceNotFoundException(id);

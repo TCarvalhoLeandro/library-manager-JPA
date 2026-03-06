@@ -26,26 +26,30 @@ public class LivroResource {
 	@Autowired
 	private LivroService service;
 
-	// 1 Metodo que chama service para retornar todos os livros do repository
-	// (banco)
-	// para uma requisição web
+	/*
+		1 Metodo que chama service para retornar todos os Livros do repository (banco)
+		para uma requisição web
+	 */
 	@GetMapping
 	public ResponseEntity<List<Livro>> findAll() {
 		List<Livro> livro = service.findAll();
 		return ResponseEntity.ok().body(livro);
 	}
 
-	// 2 Metodo que chama service para retornar um livro por id do repository
-	// (banco)
-	// para uma requisição web
+	/*
+		2 Metodo que chama service para retornar um Livro por id do repository
+		(banco) para uma requisição web
+	 */
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Livro> findById(@PathVariable Long id) {
 		Livro obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
-	// 3 Metodo que vai na camada service e chama o metodo insert para inserir um
-	// Livro
+	/*
+	 	3 Metodo que vai na camada service e chama o metodo insert para inserir um Livro
+	 	Aqui o JSON CHEGA. O Jackson usa o construtor VAZIO.
+	 */
 	@PostMapping
 	public ResponseEntity<Livro> insert(@RequestBody LivroDTO dto) {
 
@@ -55,19 +59,19 @@ public class LivroResource {
 		return ResponseEntity.created(uri).body(livro);
 	}
 
-	// 4 Metodo que vai na camada service e chama o metodo delete para deletar um
-	// Livro
-	// Como o Livro é o lado fraco da associação pode ser deletado que o Autor
-	// continua exixtindo
+	/*
+		4 Metodo que vai na camada service e chama o metodo delete para deletar um Livro
+		Como o Livro é o lado fraco da associação pode ser deletado que o Autor continua exixtindo
+	 */
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Livro> delete(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 
-	// 5
-	// Metodo que vai na camada service e chama o metodo update para atualizar um
-	// Livro
+	/*
+		5 Metodo que vai na camada service e chama o metodo update para atualizar um Livro
+	*/
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<LivroDTO> update(@PathVariable Long id, @RequestBody LivroDTO obj) {
 		obj = service.update(id, obj);

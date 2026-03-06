@@ -3,3 +3,16 @@
 "nacionalidade": "Brasileiro",
 "dataNascimento": "1829-05-01"
 }
+
+
+{
+	"leitorId": "1",
+	"livroId": "3"
+}
+
+{
+	"nome": "Maria Brown",
+	"cpf": "1235268921",
+	"endereco": "Rua Matacavalos 20",
+	"dataNascimento": "1956-07-13"
+}
