@@ -18,7 +18,7 @@ import com.leandro.library_manager_JPA.repositories.EmprestimoRepository;
 import com.leandro.library_manager_JPA.repositories.LeitorRepository;
 import com.leandro.library_manager_JPA.repositories.LivroRepository;
 
-/*Essa classe de configuração vai servir para poularmos o banco de teste H@*/
+/*Essa classe de configuração vai servir para poularmos o banco de teste H2*/
 
 
 @Configuration
