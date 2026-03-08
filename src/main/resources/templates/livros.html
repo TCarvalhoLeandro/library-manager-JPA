@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Livros</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			margin: 40px;
+			/* Mesma imagem de fundo para consistência */
+			background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1920&auto=format&fit=crop');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			background-color: #cccccc;
+		}
+
+		h1 {
+			color: white;
+			text-shadow: 2px 2px 4px #000000;
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		/* --- TABELA --- */
+		table {
+			width: 100%;
+			margin: 0 auto;
+			/* Centraliza a tabela na tela */
+			border-collapse: collapse;
+
+			/* Fundo BRANCO com 90% de opacidade (0.9) */
+			/* Isso permite ver um pouquinho da imagem de fundo atrás da tabela */
+			background-color: rgba(255, 255, 255, 0.95);
+
+			border-radius: 10px;
+			/* Bordas arredondadas na tabela */
+
+			overflow: hidden;
+			/* Garante que a borda redonda corte as pontas */
+
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+			/* Sombra atrás da tabela para dar destaque 3D */
+		}
+
+		th,
+		td {
+			padding: 15px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+
+		/* --- DIFERENÇA: Cabeçalho Laranja para Autores --- */
+		th {
+			background-color: #4CAF50;
+			/* Laranja */
+			color: white;
+			font-size: 1.1rem;
+		}
+
+		tr:hover {
+			background-color: #f1f1f1;
+		}
+
+		.disponivel {
+			color: #27ae60;
+			font-weight: bold;
+			background-color: #eafaf1;
+			padding: 5px 10px;
+			border-radius: 15px;
+		}
+
+		.indisponivel {
+			color: #c0392b;
+			font-weight: bold;
+			background-color: #fdedec;
+			padding: 5px 10px;
+			border-radius: 15px;
+		}
+
+		/* Botãozinho para voltar */
+		.btn-voltar {
+			display: inline-block;
+			margin-bottom: 20px;
+			padding: 10px 20px;
+			background-color: white;
+			color: #333;
+			text-decoration: none;
+			border-radius: 5px;
+			font-weight: bold;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+		}
+	</style>
+</head>
+
+<body>
+
+	<a href="/" class="btn-voltar">Home</a>
+
+	<h1>📚 Livros Cadastrados</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Título</th>
+				<th>ISBN</th>
+				<th>Autor</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="livro : ${meusLivros}">
+				<td th:text="${livro.id}">1</td>
+				<td th:text="${livro.titulo}">Titulo</td>
+				<td th:text="${livro.isbn}">xxx-xxxxxx</td>
+				<td th:text="${livro.autor.nome}">Nome do Autor</td>
+				<td>
+					<span th:text="${livro.disponivel} ? 'Disponível' : 'Indisponível'"
+						th:class="${livro.disponivel} ? 'disponivel' : 'indisponivel'">
+					</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>
