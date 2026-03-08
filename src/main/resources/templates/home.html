@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Manager - Leandro</title>
+    <style>
+        /* CSS para a imagem de fundo e centralização */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .bg {
+            /* --- AQUI É ONDE VOCÊ COLOCA A SUA IMAGEM --- */
+            /* Por enquanto, coloquei um link de uma biblioteca aleatória da internet */
+            background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+
+            /* Isso faz a imagem cobrir a tela toda sem repetir */
+            height: 100%; 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+            /* Filtro escuro para o texto branco aparecer melhor em cima da foto */
+            position: relative;
+        }
+        
+        /* Uma camada preta semitransparente em cima da imagem */
+        .overlay {
+            background-color: rgba(0,0,0, 0.6); /* 0.6 é a transparência (60% escuro) */
+            height: 100%;
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center;     /* Centraliza verticalmente */
+            flex-direction: column;  /* Coloca um item embaixo do outro */
+        }
+
+        /* Estilo do Texto */
+        .conteudo {
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 4rem; /* Tamanho gigante */
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        /* Estilo do Botão */
+        .botao-entrar {
+            padding: 15px 40px;
+            background-color: #4CAF50; /* Verde */
+            color: white;
+            text-decoration: none; /* Tira o sublinhado do link */
+            font-size: 1.2rem;
+            border-radius: 50px; /* Bordas redondass */
+            transition: 0.3s; /* Animação suave */
+            font-weight: bold;
+            border: 2px solid #4CAF50;
+        }
+
+        .botao-entrar:hover {
+            background-color: transparent; /* Fica transparente ao passar o mouse */
+            color: #4CAF50;
+        }
+		
+		.btn-laranja {
+		    background-color: #e67e22;
+		    border-color: #e67e22;
+		    margin-left: 20px;
+		}
+		.btn-laranja:hover {
+		    background-color: transparent;
+		    color: #e67e22;
+		}
+		
+		.btn-azul {
+		    background-color: #3498db;
+		    border-color: #3498db;
+		    margin-left: 20px;
+		}
+		.btn-azul:hover {
+		    background-color: transparent;
+		    color: #3498db;
+		}
+		
+		.btn-roxo {
+		    background-color: #8e44ad;
+		    border-color: #8e44ad;
+		    margin-left: 20px;
+		}
+		.btn-roxo:hover {
+		    background-color: transparent;
+		    color: #8e44ad;
+		}
+    </style>
+</head>
+<body>
+
+    <div class="bg">
+        <div class="overlay">
+            <div class="conteudo">
+                <h1>Library Manager</h1>
+                <p>Projeto de Sistema Gerenciador de Biblioteca</p>
+                
+                <a href="/biblioteca/livros" class="botao-entrar">📚 Livros</a>
+				<a href="/biblioteca/autores" class="botao-entrar btn-laranja">✍🏽 Autores</a>
+				<a href="/biblioteca/leitores" class="botao-entrar btn-azul">👨🏽‍🏫 Leitores</a>
+				<a href="/biblioteca/emprestimos" class="botao-entrar btn-roxo"> 📆 Empréstimos</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
