@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Livros</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			margin: 40px;
+			/* Mesma imagem de fundo para consistência */
+			background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1920&auto=format&fit=crop');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			background-color: #cccccc;
+		}
+
+		h1 {
+			color: white;
+			text-shadow: 2px 2px 4px #000000;
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		/* --- TABELA --- */
+		table {
+			width: 90%;
+			margin: 0 auto;
+			/* Centraliza a tabela na tela */
+			border-collapse: collapse;
+
+			/* Fundo BRANCO com 90% de opacidade (0.9) */
+			/* Isso permite ver um pouquinho da imagem de fundo atrás da tabela */
+			background-color: rgba(255, 255, 255, 0.95);
+
+			border-radius: 10px;
+			/* Bordas arredondadas na tabela */
+
+			overflow: hidden;
+			/* Garante que a borda redonda corte as pontas */
+
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+			/* Sombra atrás da tabela para dar destaque 3D */
+		}
+
+		th,
+		td {
+			padding: 15px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+
+		/* --- DIFERENÇA: Cabeçalho Laranja para Autores --- */
+		th {
+			background-color: #3498db;
+			/* Azul */
+			color: white;
+			font-size: 1.1rem;
+		}
+
+		tr:hover {
+			background-color: #f1f1f1;
+		}
+
+		
+		/* Botãozinho para voltar */
+		.btn-voltar {
+			display: inline-block;
+			margin-bottom: 20px;
+			padding: 10px 20px;
+			background-color: white;
+			color: #333;
+			text-decoration: none;
+			border-radius: 5px;
+			font-weight: bold;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+		}
+	</style>
+</head>
+
+<body>
+
+	<a href="/" class="btn-voltar">Home</a>
+
+	<h1>👨🏽‍🏫 Leitores Cadastrados</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nome</th>
+				<th>CPF</th>
+				<th>Endereço</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="leitor : ${meusLeitores}">
+				<td th:text="${leitor.id}">1</td>
+				<td th:text="${leitor.nome}">nome</td>
+				<td th:text="${leitor.cpf}">xxx.xxx.xxx.-xx</td>
+				<td th:text="${leitor.endereco}">Rua dos Elfos</td>
+				
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>
