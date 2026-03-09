@@ -63,25 +63,81 @@
 			background-color: #f1f1f1;
 		}
 
-		
-		/* Botãozinho para voltar */
-		.btn-voltar {
-			display: inline-block;
-			margin-bottom: 20px;
-			padding: 10px 20px;
-			background-color: white;
-			color: #333;
-			text-decoration: none;
-			border-radius: 5px;
-			font-weight: bold;
-			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+		/* Container que segura todos os botões */
+		.menu-container {
+			display: flex;
+			/* Ativa o modo flexível */
+			justify-content: center;
+			/* Centraliza tudo na tela */
+			gap: 20px;
+			/* Espaço entre os botões */
+			flex-wrap: wrap;
+			/* Se faltar espaço, joga pra linha de baixo */
+			margin-bottom: 40px;
+			/* Empurra o conteúdo de baixo para não colar */
+			padding: 20px;
 		}
+
+		/* Estilo de cada botão individual */
+		.btn-menu {
+			background-color: white;
+			color: #2c3e50;
+			/* Cor do texto (cinza escuro elegante) */
+			padding: 15px 30px;
+			/* Tamanho do botão (altura x largura interna) */
+			text-decoration: none;
+			/* Tira o sublinhado do link */
+			font-weight: bold;
+			font-size: 1.1rem;
+			border-radius: 12px;
+			/* Bordas arredondadas modernas */
+
+			/* Sombra suave para dar efeito 3D */
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+			/* Transição suave para animação */
+			transition: all 0.3s ease;
+
+			/* Garante que todos tenham pelo menos esse tamanho */
+			min-width: 160px;
+			text-align: center;
+			border: 2px solid transparent;
+			/* Prepara para a borda no hover */
+		}
+
+		/* Efeito quando passa o mouse em cima */
+		.btn-menu:hover {
+			transform: translateY(-5px);
+			/* O botão "flutua" pra cima */
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+			/* Sombra aumenta */
+			background-color: #3498db;
+			/* Fica azul */
+			color: white;
+			/* Texto vira branco */
+		}
+
+		/* Efeito de clique (opcional) */
+		.btn-menu:active {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		}
+
 	</style>
 </head>
 
 <body>
 
-	<a href="/" class="btn-voltar">Home</a>
+	<div class="menu-container">
+		<a href="/" class="btn-menu">Home</a>
+		<a th:href="@{/biblioteca/leitores/novo}" class="btn-menu">Novo</a>
+
+		<a href="#" class="btn-menu">Deletar</a>
+		<a href="#" class="btn-menu">Atualizar</a>
+	</div>
+
+
+
 
 	<h1>👨🏽‍🏫 Leitores Cadastrados</h1>
 
@@ -90,7 +146,7 @@
 			<tr>
 				<th>ID</th>
 				<th>Nome</th>
-				<th>CPF</th>
+				<th>Telefone</th>
 				<th>Endereço</th>
 			</tr>
 		</thead>
@@ -98,9 +154,9 @@
 			<tr th:each="leitor : ${meusLeitores}">
 				<td th:text="${leitor.id}">1</td>
 				<td th:text="${leitor.nome}">nome</td>
-				<td th:text="${leitor.cpf}">xxx.xxx.xxx.-xx</td>
+				<td th:text="${leitor.telefone}">(xx xxxxx-xxxx)</td>
 				<td th:text="${leitor.endereco}">Rua dos Elfos</td>
-				
+
 			</tr>
 		</tbody>
 	</table>

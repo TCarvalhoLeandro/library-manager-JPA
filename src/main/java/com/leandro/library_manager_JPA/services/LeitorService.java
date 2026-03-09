@@ -44,7 +44,7 @@ public class LeitorService implements Serializable {
 
 		Leitor obj = new Leitor();
 		obj.setNome(dto.getNome());
-		obj.setCpf(dto.getCpf());
+		obj.setTelefone(dto.getTelefone());
 		obj.setEndereco(dto.getEndereco());
 		obj.setDataNascimento(dto.getDataNascimento());
 
@@ -85,7 +85,7 @@ public class LeitorService implements Serializable {
 // Método auxiliar
 	private void updateData(Leitor entity, LeitorDTO dto) {
 		entity.setNome(dto.getNome());
-		entity.setCpf(dto.getCpf());
+		entity.setTelefone(dto.getTelefone());
 		entity.setEndereco(dto.getEndereco());
 		entity.setDataNascimento(dto.getDataNascimento());
 

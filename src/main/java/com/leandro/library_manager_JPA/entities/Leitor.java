@@ -23,7 +23,7 @@ public class Leitor implements Serializable{
 
 	@Column(nullable = false, length = 100) // nao permite que a coluna seja nula e com menos de 100 caracteres
 	private String nome;
-	private String cpf;
+	private String telefone;
 	private String endereco;
 	private LocalDate dataNascimento;
 
@@ -31,11 +31,11 @@ public class Leitor implements Serializable{
 
 	}
 
-	public Leitor(Long id, String nome, String cpf, String endereco, LocalDate dataNascimento) {
+	public Leitor(Long id, String nome, String telefone, String endereco, LocalDate dataNascimento) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.cpf = cpf;
+		this.telefone = telefone;
 		this.endereco = endereco;
 		this.dataNascimento = dataNascimento;
 	}
@@ -56,12 +56,12 @@ public class Leitor implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setTelefone(String cpf) {
+		this.telefone = cpf;
 	}
 
 	public String getEndereco() {

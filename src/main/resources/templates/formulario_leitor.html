@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Leitor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 40px;
+            /* Sua imagem de fundo */
+            background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center; /* Centraliza o formulário no meio da tela */
+        }
+
+        .container-form {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            width: 400px; /* Largura do formulário */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Garante que o padding não aumente a largura */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db; /* Azul */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-cancelar {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #7f8c8d;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-form">
+        <h2>Novo Leitor</h2>
+
+        <form th:action="@{/biblioteca/leitores/salvar}" th:object="${leitorDTO}" method="post">
+
+            <label>Nome Completo:</label>
+            <input type="text" th:field="*{nome}" required placeholder="Ex: João Silva" />
+
+            <label>Telefone:</label>
+            <input type="text" th:field="*{telefone}" required placeholder="00 00000-0000" />
+
+            <label>Endereço:</label>
+            <input type="text" th:field="*{endereco}" placeholder="Rua, Número, Bairro" />
+
+            <label>Data de Nascimento:</label>
+            <input type="date" th:field="*{dataNascimento}" required />
+
+            <button type="submit">Salvar Leitor</button>
+            
+            <a href="/biblioteca/leitores" class="btn-cancelar">Cancelar</a>
+        </form>
+    </div>
+
+</body>
+</html>

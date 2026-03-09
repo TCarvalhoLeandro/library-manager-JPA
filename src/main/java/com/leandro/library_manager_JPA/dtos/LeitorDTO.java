@@ -3,6 +3,8 @@ package com.leandro.library_manager_JPA.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.leandro.library_manager_JPA.entities.Leitor;
 
 
@@ -13,8 +15,10 @@ public class LeitorDTO implements Serializable{
 	
 	private Long id;
 	private String nome;
-	private String cpf;
+	private String telefone;
 	private String endereco;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataNascimento;
 	
 	public LeitorDTO() {
@@ -24,7 +28,7 @@ public class LeitorDTO implements Serializable{
 	public LeitorDTO(Leitor entity) {
 		this.id = entity.getId();
 		this.nome = entity.getNome();
-		this.cpf = entity.getCpf();
+		this.telefone = entity.getTelefone();
 		this.endereco = entity.getEndereco();
 		this.dataNascimento = entity.getDataNascimento();
 		
@@ -46,12 +50,12 @@ public class LeitorDTO implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public String getEndereco() {
