@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.leandro.library_manager_JPA.dtos.LeitorDTO;
 import com.leandro.library_manager_JPA.entities.Leitor;
 import com.leandro.library_manager_JPA.repositories.LeitorRepository;
+import com.leandro.library_manager_JPA.resources.exceptions.DatabaseException;
 import com.leandro.library_manager_JPA.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -57,8 +59,13 @@ public class LeitorService implements Serializable {
 	public void delete(Long id) {
 		if (!repository.existsById(id))
 			throw new ResourceNotFoundException(id);
-
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new DatabaseException("Leitor com empréstimos pendentes. Não é possível excluir!"); 
+		}
+		
 
 	}
 

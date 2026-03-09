@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Livros</title>
+	<title>Leitores</title>
 	<style>
 		body {
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -66,16 +66,11 @@
 		/* Container que segura todos os botões */
 		.menu-container {
 			display: flex;
-			/* Ativa o modo flexível */
-			justify-content: center;
-			/* Centraliza tudo na tela */
-			gap: 20px;
-			/* Espaço entre os botões */
-			flex-wrap: wrap;
-			/* Se faltar espaço, joga pra linha de baixo */
-			margin-bottom: 40px;
-			/* Empurra o conteúdo de baixo para não colar */
-			padding: 20px;
+			justify-content: space-between;
+			/* <--- MUDAR PARA 'space-between' */
+			align-items: center;
+			/* Garante que fiquem alinhados verticalmente */
+			margin-bottom: 20px;
 		}
 
 		/* Estilo de cada botão individual */
@@ -123,6 +118,53 @@
 			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 		}
 
+		.btn-excluir {
+			background-color: #e74c3c;
+			/* Vermelho */
+			color: white;
+			padding: 5px 10px;
+			text-decoration: none;
+			border-radius: 5px;
+			font-size: 0.9rem;
+			margin-left: 5px;
+			transition: 0.3s;
+		}
+
+		.btn-excluir:hover {
+			background-color: #c0392b;
+			/* Vermelho mais escuro */
+		}
+		/* Classe específica para a coluna de botões */
+		.col-acoes {
+		    text-align: right;   /* Joga tudo para a direita */
+		    white-space: nowrap; /* Impede que um botão caia para a linha de baixo */
+		    min-width: 180px;    /* Garante um espaço mínimo para não espremer os botões */
+		    padding-right: 20px; /* Um respiro para não colar na borda da tela */
+		}
+		
+		/* Estilo para mensagens de alerta */
+		.alert {
+		    padding: 15px;
+		    margin-bottom: 20px;
+		    border: 1px solid transparent;
+		    border-radius: 4px;
+		    font-weight: bold;
+		    text-align: center;
+		}
+
+		/* Cor para ERRO (Vermelho) */
+		.alert-danger {
+		    color: #a94442;
+		    background-color: #f2dede;
+		    border-color: #ebccd1;
+		}
+
+		/* Cor para SUCESSO (Verde) */
+		.alert-success {
+		    color: #3c763d;
+		    background-color: #dff0d8;
+		    border-color: #d6e9c6;
+		}
 	</style>
 </head>
 
@@ -132,15 +174,20 @@
 		<a href="/" class="btn-menu">Home</a>
 		<a th:href="@{/biblioteca/leitores/novo}" class="btn-menu">Novo</a>
 
-		<a href="#" class="btn-menu">Deletar</a>
-		<a href="#" class="btn-menu">Atualizar</a>
 	</div>
 
 
 
 
 	<h1>👨🏽‍🏫 Leitores Cadastrados</h1>
+	
+	<div th:if="${mensagemErro}" class="alert alert-danger">
+	    <span th:text="${mensagemErro}"></span>
+	</div>
 
+	<div th:if="${mensagemSucesso}" class="alert alert-success">
+	    <span th:text="${mensagemSucesso}"></span>
+	</div>
 	<table>
 		<thead>
 			<tr>
@@ -148,6 +195,7 @@
 				<th>Nome</th>
 				<th>Telefone</th>
 				<th>Endereço</th>
+				<th class="col-acoes">Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -156,7 +204,13 @@
 				<td th:text="${leitor.nome}">nome</td>
 				<td th:text="${leitor.telefone}">(xx xxxxx-xxxx)</td>
 				<td th:text="${leitor.endereco}">Rua dos Elfos</td>
-
+				<td class="col-acoes">
+					<a th:href="@{/biblioteca/leitores/editar/{id}(id=${leitor.id})}" class="btn-editar">Editar</a>
+					<a th:href="@{/biblioteca/leitores/deletar/{id}(id=${leitor.id})}" class="btn-excluir"
+						onclick="return confirm('Tem certeza que deseja excluir este leitor? Esta ação não pode ser desfeita.')">
+						Excluir
+					</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
