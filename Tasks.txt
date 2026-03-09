@@ -1,0 +1,35 @@
+08/03/2026
+
+14:45 -> Baixa o pgAdmin4 e conecta com o banco local biblioteca_local
+
+15:10 -> Adiciona em pom.xml a dependência do Thymeleaf
+
+16:15 -> Cria HomeController e thymeleaf home.html
+
+16:31 -> Cria AutorWebController e thymeleaf autores.html
+
+16:57 -> Cria LivroWebController e thymeleaf livros.html
+
+17:18 -> Cria LeitorWebController e thymeleaf leitores.html
+
+17:30 -> Cria EmprestimoWebController e thymeleaf emprestimos.html
+
+20:30 -> Deleta AutorWebController e thymeleaf emprestimos.html
+
+
+Próximas Features:
+
+	* Criar uma coluna em Emprestimos para a data de devolução e para o autor do livro
+	
+	* Mudar a coluna de cpf para telefone em Leitores
+
+	* Criar métodos insert para Livros, Leitores e Empréstimos
+		No método insert de Livros criar um questionário para inserir um Autor e só depois inserir um livro
+		associado a esse autor.
+	
+	* Criar métodos para atualizar Livros e Leitores
+	
+	* Criar métodos para deletar Livros e Leitores
+	
+	* Colocar a aplicação no Render e mudar o perfil para prod 
+	
