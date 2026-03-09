@@ -47,6 +47,7 @@ public class LeitorWebController {
 		return "redirect:/biblioteca/leitores";
 	}
 	
+	
 	//METODO PARA DELETAR UM LEITOR
 	@GetMapping("/leitores/deletar/{id}")
 	public String deletarLeitor(@PathVariable Long id, RedirectAttributes attributes) {
@@ -62,4 +63,62 @@ public class LeitorWebController {
 		
 		return "redirect:/biblioteca/leitores";
 	}
+	
+	
+	//METODOS PARA ATUALIZAR UM LEITOR
+	//Rota para carregar o formulário PREENCHIDO com os dados do leitor
+	@GetMapping("/leitores/editar/{id}")
+	public String editarLeitor(@PathVariable Long id, Model model) {
+		// Busca o leitor no banco (retorna entidade Leitor)
+		Leitor leitor = service.findById(id);
+		
+		// Converte para DTO (pois o formulário espera um DTO)
+		LeitorDTO dto = new LeitorDTO(leitor);
+		
+		// Manda o DTO preenchido para a tela
+		model.addAttribute("leitorDTO", dto);
+		
+		// Reutilizamos o mesmo HTML!
+		return "formulario_leitor";
+	}
+	
+	//Rota para receber os dados alterados e salvar
+	@PostMapping("/leitores/editar/{id}")
+	public String atualizarLeitor(@PathVariable Long id, @ModelAttribute("leitorDTO") LeitorDTO dto) {
+		// Chama o serviço de atualização
+		service.update(id, dto);
+		return "redirect:/biblioteca/leitores";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

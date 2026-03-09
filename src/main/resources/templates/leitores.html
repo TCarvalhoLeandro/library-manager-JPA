@@ -112,15 +112,25 @@
 			/* Texto vira branco */
 		}
 
+		/* Classe específica para a coluna de botões */
+		.col-acoes {
+			text-align: right;
+			/* Joga tudo para a direita */
+			white-space: nowrap;
+			/* Impede que um botão caia para a linha de baixo */
+			min-width: 180px;
+			/* Garante um espaço mínimo para não espremer os botões */
+			padding-right: 20px;
+			/* Um respiro para não colar na borda da tela */
+		}
+
 		/* Efeito de clique (opcional) */
 		.btn-menu:active {
 			transform: translateY(-2px);
 			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 		}
 
-		.btn-excluir {
-			background-color: #e74c3c;
-			/* Vermelho */
+		.btn-excluir, .btn-editar {
 			color: white;
 			padding: 5px 10px;
 			text-decoration: none;
@@ -130,40 +140,44 @@
 			transition: 0.3s;
 		}
 
+		.btn-excluir{
+			background-color: #e74c3c;
+		}
 		.btn-excluir:hover {
 			background-color: #c0392b;
-			/* Vermelho mais escuro */
+			transform: translateY(-2px);
 		}
-		/* Classe específica para a coluna de botões */
-		.col-acoes {
-		    text-align: right;   /* Joga tudo para a direita */
-		    white-space: nowrap; /* Impede que um botão caia para a linha de baixo */
-		    min-width: 180px;    /* Garante um espaço mínimo para não espremer os botões */
-		    padding-right: 20px; /* Um respiro para não colar na borda da tela */
+		.btn-editar{
+			background-color: #545fe8;
 		}
-		
+		.btn-editar:hover{
+			background-color: #404ded;
+			transform: translateY(-2px);
+		}
+
+
 		/* Estilo para mensagens de alerta */
 		.alert {
-		    padding: 15px;
-		    margin-bottom: 20px;
-		    border: 1px solid transparent;
-		    border-radius: 4px;
-		    font-weight: bold;
-		    text-align: center;
+			padding: 15px;
+			margin-bottom: 20px;
+			border: 1px solid transparent;
+			border-radius: 4px;
+			font-weight: bold;
+			text-align: center;
 		}
 
 		/* Cor para ERRO (Vermelho) */
 		.alert-danger {
-		    color: #a94442;
-		    background-color: #f2dede;
-		    border-color: #ebccd1;
+			color: #a94442;
+			background-color: #f2dede;
+			border-color: #ebccd1;
 		}
 
 		/* Cor para SUCESSO (Verde) */
 		.alert-success {
-		    color: #3c763d;
-		    background-color: #dff0d8;
-		    border-color: #d6e9c6;
+			color: #3c763d;
+			background-color: #dff0d8;
+			border-color: #d6e9c6;
 		}
 	</style>
 </head>
@@ -180,13 +194,13 @@
 
 
 	<h1>👨🏽‍🏫 Leitores Cadastrados</h1>
-	
+
 	<div th:if="${mensagemErro}" class="alert alert-danger">
-	    <span th:text="${mensagemErro}"></span>
+		<span th:text="${mensagemErro}"></span>
 	</div>
 
 	<div th:if="${mensagemSucesso}" class="alert alert-success">
-	    <span th:text="${mensagemSucesso}"></span>
+		<span th:text="${mensagemSucesso}"></span>
 	</div>
 	<table>
 		<thead>

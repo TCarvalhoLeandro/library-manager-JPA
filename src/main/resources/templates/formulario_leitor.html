@@ -74,10 +74,14 @@
 <body>
 
     <div class="container-form">
-        <h2>Novo Leitor</h2>
+        <h2 th:text="${leitorDTO.id == null} ? 'Novo Leitor' : 'Editar Leitor'">Novo Leitor</h2>
 
-        <form th:action="@{/biblioteca/leitores/salvar}" th:object="${leitorDTO}" method="post">
-
+		<form th:action="${leitorDTO.id == null} ? @{/biblioteca/leitores/salvar} : @{/biblioteca/leitores/editar/{id}(id=${leitorDTO.id})}" 
+		      th:object="${leitorDTO}" 
+		      method="post">
+			
+			<input type="hidden" th:field="*{id}" />
+			
             <label>Nome Completo:</label>
             <input type="text" th:field="*{nome}" required placeholder="Ex: João Silva" />
 
