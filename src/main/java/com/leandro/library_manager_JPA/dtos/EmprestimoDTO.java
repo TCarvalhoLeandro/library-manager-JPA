@@ -22,21 +22,6 @@ public class EmprestimoDTO implements Serializable{
 
 	}
 	
-	
-
-	public EmprestimoDTO(Long id, LocalDate dataEmprestimo, LocalDate dataPrevisaoEntrega, LocalDate dataEntrega,
-			Long leitorId, Long livroId) {
-		super();
-		this.id = id;
-		this.dataEmprestimo = dataEmprestimo;
-		this.dataPrevisaoEntrega = dataPrevisaoEntrega;
-		this.dataEntrega = dataEntrega;
-		this.leitorId = leitorId;
-		this.livroId = livroId;
-	}
-
-
-
 	public EmprestimoDTO(Emprestimo entity) {
 		this.id = entity.getId();
 		this.dataEmprestimo = entity.getDataEmprestimo();

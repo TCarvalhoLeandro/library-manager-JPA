@@ -19,7 +19,7 @@
 
 Próximas Features:
 
-	* Criar uma coluna em Emprestimos para a data de devolução e para o autor do livro  - nao é necessário
+	
 	
 	* Mudar a coluna de cpf para telefone em Leitores - Feito
 
@@ -27,9 +27,10 @@ Próximas Features:
 		No método insert de Livros criar um questionário para inserir um Autor e só depois inserir um livro
 		associado a esse autor.
 	
-	* Criar métodos para atualizar Livros e Leitores
+	* Criar métodos para atualizar Livros e Leitores - Feito
 	
-	* Criar métodos para deletar Livros e Leitores
+	* Criar métodos para deletar Livros e Leitores - Feito
+
 	
 	* Colocar a aplicação no Render e mudar o perfil para prod 
 	

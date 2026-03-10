@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Empréstimo</title>
+    <style>
+        /* CSS básico para deixar o formulário organizado */
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .form-container { max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        select { width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
+        .btn-salvar { background-color: #27ae60; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+        .btn-cancelar { background-color: #7f8c8d; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; margin-left: 10px;}
+        .alerta-erro { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Registrar Novo Empréstimo</h2>
+
+        <div th:if="${mensagemErro}" class="alerta-erro" th:text="${mensagemErro}"></div>
+
+        <form th:action="@{/biblioteca/emprestimos/salvar}" th:object="${emprestimoDTO}" method="POST">
+            
+            <div class="form-group">
+                <label for="leitor">Selecione o Leitor:</label>
+                <select id="leitor" th:field="*{leitorId}" required>
+                    <option value="">-- Escolha um Leitor --</option>
+                    <option th:each="leitor : ${leitores}" 
+                            th:value="${leitor.id}" 
+                            th:text="${leitor.nome}">Nome do Leitor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="livro">Selecione o Livro:</label>
+                <select id="livro" th:field="*{livroId}" required>
+                    <option value="">-- Escolha um Livro --</option>
+                    <option th:each="livro : ${livros}" 
+                            th:value="${livro.id}" 
+                            th:text="${livro.titulo} + (${livro.disponivel} ? '' : ' (Indisponível)')"
+                            th:disabled="${!livro.disponivel}">Título do Livro</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 25px;">
+                <button type="submit" class="btn-salvar">Salvar Empréstimo</button>
+                <a th:href="@{/biblioteca/emprestimos}" class="btn-cancelar">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
