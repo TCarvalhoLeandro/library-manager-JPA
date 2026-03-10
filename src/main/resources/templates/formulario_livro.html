@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Cadastro de Livro</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #f0f2f5;
+			display: flex;
+			justify-content: center;
+			padding: 40px;
+		}
+
+		.container-form {
+			background-color: white;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+			width: 500px;
+			/* Largura do formulário */
+		}
+
+		h2 {
+			text-align: center;
+			color: #2c3e50;
+			margin-bottom: 25px;
+			border-bottom: 2px solid #eee;
+			padding-bottom: 10px;
+		}
+
+		label {
+			display: block;
+			margin-top: 15px;
+			margin-bottom: 5px;
+			font-weight: 600;
+			color: #555;
+		}
+
+		input[type="text"],
+		input[type="number"],
+		input[type="date"],
+		select {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-sizing: border-box;
+			/* Garante que o padding não estoure a largura */
+			font-size: 1rem;
+		}
+
+		/* Estilo para a área de Novo Autor */
+		.card-novo-autor {
+			background-color: #e8f6f3;
+			/* Fundo verdinho claro */
+			border: 1px dashed #1abc9c;
+			padding: 15px;
+			border-radius: 8px;
+			margin-top: 15px;
+		}
+
+		.titulo-secao {
+			color: #16a085;
+			font-size: 0.9rem;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+
+		.divisor-ou {
+			text-align: center;
+			margin: 20px 0;
+			font-weight: bold;
+			color: #7f8c8d;
+			position: relative;
+		}
+
+		/* Linha decorativa do "OU" */
+		.divisor-ou::before,
+		.divisor-ou::after {
+			content: "";
+			display: inline-block;
+			width: 40%;
+			height: 1px;
+			background-color: #ccc;
+			vertical-align: middle;
+			margin: 0 10px;
+		}
+
+		button {
+			width: 100%;
+			padding: 12px;
+			background-color: #2980b9;
+			/* Azul */
+			color: white;
+			border: none;
+			border-radius: 5px;
+			font-size: 1.1rem;
+			cursor: pointer;
+			margin-top: 25px;
+			transition: 0.3s;
+		}
+
+		button:hover {
+			background-color: #1f6391;
+		}
+
+		.btn-cancelar {
+			display: block;
+			text-align: center;
+			margin-top: 15px;
+			color: #7f8c8d;
+			text-decoration: none;
+		}
+
+		.btn-cancelar:hover {
+			color: #2c3e50;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container-form">
+		<h2 th:text="${livroDTO.id == null} ? 'Novo Livro' : 'Editar Livro'">Novo Livro</h2>
+
+		<form
+			th:action="${livroDTO.id == null} ? @{/biblioteca/livros/salvar} : @{/biblioteca/livros/editar/{id}(id=${livroDTO.id})}"
+			th:object="${livroDTO}" method="post">
+
+			<input type="hidden" th:field="*{id}" />
+
+			<label>Título do Livro:</label>
+			<input type="text" th:field="*{titulo}" required placeholder="Ex: Dom Casmurro" />
+
+			<label>ISBN:</label>
+			<input type="text" th:field="*{isbn}" required placeholder="Ex: 978-3-16-148410-0" />
+
+			<div style="display: flex; gap: 10px;">
+				<div style="flex: 1;">
+					<label>Quantidade:</label>
+					<input type="number" th:field="*{quantidade}" required min="1" />
+				</div>
+				<div style="flex: 1;">
+					<label>Ano:</label>
+					<input type="number" th:field="*{anoPublicacao}" required placeholder="2024" />
+				</div>
+			</div>
+
+			<div style="margin-top: 30px;">
+				<label>Autor (Opção 1: Selecionar Existente)</label>
+				<select th:field="*{autorId}" id="selectAutor">
+					<option value="">-- Selecione um Autor --</option>
+					<option th:each="autor : ${listaAutores}" th:value="${autor.id}" th:text="${autor.nome}">
+					</option>
+				</select>
+			</div>
+
+			<div class="divisor-ou">OU</div>
+
+			<div class="card-novo-autor">
+				<div class="titulo-secao">Opção 2: Cadastrar Novo Autor</div>
+
+				<label>Nome do Novo Autor:</label>
+				<input type="text" th:field="*{novoAutorNome}" placeholder="Preencha apenas se não selecionou acima" />
+
+				<label>Nacionalidade:</label>
+				<input type="text" th:field="*{novoAutorNacionalidade}" placeholder="Ex: Brasileiro" />
+
+				<label>Data de Nascimento:</label>
+				<input type="date" th:field="*{novoAutorNascimento}" />
+			</div>
+
+			<button type="submit">Salvar Livro</button>
+
+			<a href="/biblioteca/livros" class="btn-cancelar">Cancelar</a>
+		</form>
+	</div>
+
+</body>
+
+</html>

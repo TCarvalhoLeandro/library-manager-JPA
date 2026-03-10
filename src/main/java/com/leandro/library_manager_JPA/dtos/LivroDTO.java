@@ -1,42 +1,53 @@
 package com.leandro.library_manager_JPA.dtos;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.leandro.library_manager_JPA.entities.Livro;
 
 public class LivroDTO {
 
+	private Long id;
 	private String titulo;
 	private Integer quantidade;
 	private String isbn;
 	private Integer anoPublicacao;
 	private boolean disponivel;
+
+	private Long autorId;
 	
-	// A GRANDE DIFERENÇA
-    // Na Entidade, isso é: private Autor autor;
-    // No DTO, nós simplificamos para:
-	private Long autorId;// Mantemos apenas o ID para vincular
+	private String novoAutorNome;
+    private String novoAutorNacionalidade;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate novoAutorNascimento;
 	
 	public LivroDTO() {
 		
 	}
-
-	public LivroDTO(String titulo, Integer quantidade, String isbn, Integer anoPublicacao, boolean disponivel, Long autorId) {
-		this.titulo = titulo;
-		this.quantidade = quantidade;
-		this.isbn = isbn;
-		this.anoPublicacao = anoPublicacao;
-		this.disponivel = disponivel;
-		this.autorId = autorId;
-	}
 	
-	
-	// 3. Construtor que recebe a Entidade (Dica de Ouro do Nélio Alves)
-    // Isso facilita muito na hora de converter Livro -> LivroDTO para devolver no GET
+	// Construtor que recebe a Entidade e preenche o DTO
 	public LivroDTO(Livro entity) {
-		this.titulo = entity.getTitulo();
-		this.isbn = entity.getIsbn();
-		this.anoPublicacao = entity.getAnoPublicacao();
-		if(entity.getAutor() != null)
-			this.autorId = entity.getAutor().getId();
+	    this.id = entity.getId();
+	    this.titulo = entity.getTitulo();
+	    this.isbn = entity.getIsbn();
+	    this.quantidade = entity.getQuantidade();
+	    this.anoPublicacao = entity.getAnoPublicacao();
+	    
+	    // O PULO DO GATO: Pega o ID do autor para o dropdown saber quem selecionar
+	    if (entity.getAutor() != null) {
+	        this.autorId = entity.getAutor().getId();
+	        //this.nomeAutor = entity.getAutor().getNome(); // Opcional, se quiser mostrar o nome
+	    }
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitulo() {
@@ -89,6 +100,36 @@ public class LivroDTO {
 
 	public void setAutorId(Long autorId) {
 		this.autorId = autorId;
+	}
+
+
+	public String getNovoAutorNome() {
+		return novoAutorNome;
+	}
+
+
+	public void setNovoAutorNome(String novoAutorNome) {
+		this.novoAutorNome = novoAutorNome;
+	}
+
+
+	public String getNovoAutorNacionalidade() {
+		return novoAutorNacionalidade;
+	}
+
+
+	public void setNovoAutorNacionalidade(String novoAutorNacionalidade) {
+		this.novoAutorNacionalidade = novoAutorNacionalidade;
+	}
+
+
+	public LocalDate getNovoAutorNascimento() {
+		return novoAutorNascimento;
+	}
+
+
+	public void setNovoAutorNascimento(LocalDate novoAutorNascimento) {
+		this.novoAutorNascimento = novoAutorNascimento;
 	}
 	
 	

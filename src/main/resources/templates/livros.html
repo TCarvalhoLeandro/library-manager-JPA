@@ -79,24 +79,102 @@
 			border-radius: 15px;
 		}
 
-		/* Botãozinho para voltar */
-		.btn-voltar {
-			display: inline-block;
+		/* Container que segura todos os botões */
+		.menu-container {
+			display: flex;
+			justify-content: space-between;
+			/* <--- MUDAR PARA 'space-between' */
+			align-items: center;
+			/* Garante que fiquem alinhados verticalmente */
 			margin-bottom: 20px;
-			padding: 10px 20px;
+		}
+
+
+		/* Estilo de cada botão individual */
+		.btn-menu {
 			background-color: white;
-			color: #333;
+			color: #2c3e50;
+			/* Cor do texto (cinza escuro elegante) */
+			padding: 15px 30px;
+			/* Tamanho do botão (altura x largura interna) */
+			text-decoration: none;
+			/* Tira o sublinhado do link */
+			font-weight: bold;
+			font-size: 1.1rem;
+			border-radius: 12px;
+			/* Bordas arredondadas modernas */
+
+			/* Sombra suave para dar efeito 3D */
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+			/* Transição suave para animação */
+			transition: all 0.3s ease;
+
+			/* Garante que todos tenham pelo menos esse tamanho */
+			min-width: 160px;
+			text-align: center;
+			border: 2px solid transparent;
+			/* Prepara para a borda no hover */
+		}
+
+		/* Efeito quando passa o mouse em cima */
+		.btn-menu:hover {
+			transform: translateY(-5px);
+			/* O botão "flutua" pra cima */
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+			/* Sombra aumenta */
+			background-color: #3498db;
+			/* Fica azul */
+			color: white;
+			/* Texto vira branco */
+		}
+
+		/* Efeito de clique (opcional) */
+		.btn-menu:active {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		}
+
+
+		.btn-excluir,
+		.btn-editar {
+			color: white;
+			padding: 5px 10px;
 			text-decoration: none;
 			border-radius: 5px;
-			font-weight: bold;
-			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+			font-size: 0.9rem;
+			margin-left: 5px;
+			transition: 0.3s;
+		}
+
+		.btn-excluir {
+			background-color: #e74c3c;
+		}
+
+		.btn-excluir:hover {
+			background-color: #c0392b;
+			transform: translateY(-2px);
+		}
+
+		.btn-editar {
+			background-color: #545fe8;
+		}
+
+		.btn-editar:hover {
+			background-color: #404ded;
+			transform: translateY(-2px);
 		}
 	</style>
 </head>
 
 <body>
 
-	<a href="/" class="btn-voltar">Home</a>
+
+	<div class="menu-container">
+		<a href="/" class="btn-menu">Home</a>
+		<a th:href="@{/biblioteca/livros/novo}" class="btn-menu">Novo</a>
+
+	</div>
 
 	<h1>📚 Livros Cadastrados</h1>
 
@@ -108,6 +186,7 @@
 				<th>ISBN</th>
 				<th>Autor</th>
 				<th>Status</th>
+				<th class="col-acoes">Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -120,6 +199,12 @@
 					<span th:text="${livro.disponivel} ? 'Disponível' : 'Indisponível'"
 						th:class="${livro.disponivel} ? 'disponivel' : 'indisponivel'">
 					</span>
+				</td>
+				<td class="col-acoes">
+					<a th:href="@{/biblioteca/livros/editar/{id}(id=${livro.id})}" class="btn-editar">Editar</a>
+
+					<a th:href="@{/biblioteca/livros/deletar/{id}(id=${livro.id})}" class="btn-excluir"
+						onclick="return confirm('Tem certeza que deseja excluir este livro?')">Excluir</a>
 				</td>
 			</tr>
 		</tbody>

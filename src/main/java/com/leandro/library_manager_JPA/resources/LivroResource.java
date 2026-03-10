@@ -71,12 +71,12 @@ public class LivroResource {
 
 	/*
 		5 Metodo que vai na camada service e chama o metodo update para atualizar um Livro
-	*/
+	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<LivroDTO> update(@PathVariable Long id, @RequestBody LivroDTO obj) {
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 
-	}
+	}*/
 
 }
