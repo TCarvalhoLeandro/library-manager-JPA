@@ -40,7 +40,7 @@ public class LivroWebController {
 		model.addAttribute("meusLivros", list);
 
 		// Vai procurar o arquivo autores.html
-		return "/livros";
+		return "livros";
 	}
 
 	
