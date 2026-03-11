@@ -8,7 +8,6 @@
 		body {
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 			margin: 40px;
-			/* Mesma imagem de fundo para consistência */
 			background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1920&auto=format&fit=crop');
 			background-size: cover;
 			background-position: center;
@@ -26,22 +25,13 @@
 		/* --- TABELA --- */
 		table {
 			width: 90%;
-			margin: 0 auto;
-			/* Centraliza a tabela na tela */
+			margin: 0 auto;/* Centraliza a tabela na tela */
 			border-collapse: collapse;
-
-			/* Fundo BRANCO com 90% de opacidade (0.9) */
-			/* Isso permite ver um pouquinho da imagem de fundo atrás da tabela */
 			background-color: rgba(255, 255, 255, 0.95);
-
 			border-radius: 10px;
-			/* Bordas arredondadas na tabela */
-
 			overflow: hidden;
-			/* Garante que a borda redonda corte as pontas */
-
 			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-			/* Sombra atrás da tabela para dar destaque 3D */
+			
 		}
 
 		th,
@@ -51,10 +41,9 @@
 			border-bottom: 1px solid #ddd;
 		}
 
-		/* --- DIFERENÇA: Cabeçalho Laranja para Autores --- */
+		
 		th {
 			background-color: #3498db;
-			/* Azul */
 			color: white;
 			font-size: 1.1rem;
 		}
@@ -67,9 +56,7 @@
 		.menu-container {
 			display: flex;
 			justify-content: space-between;
-			/* <--- MUDAR PARA 'space-between' */
 			align-items: center;
-			/* Garante que fiquem alinhados verticalmente */
 			margin-bottom: 20px;
 		}
 
@@ -77,51 +64,34 @@
 		.btn-menu {
 			background-color: white;
 			color: #2c3e50;
-			/* Cor do texto (cinza escuro elegante) */
 			padding: 15px 30px;
-			/* Tamanho do botão (altura x largura interna) */
 			text-decoration: none;
-			/* Tira o sublinhado do link */
 			font-weight: bold;
 			font-size: 1.1rem;
 			border-radius: 12px;
-			/* Bordas arredondadas modernas */
-
-			/* Sombra suave para dar efeito 3D */
 			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-			/* Transição suave para animação */
 			transition: all 0.3s ease;
-
-			/* Garante que todos tenham pelo menos esse tamanho */
 			min-width: 160px;
 			text-align: center;
 			border: 2px solid transparent;
-			/* Prepara para a borda no hover */
+		
 		}
 
 		/* Efeito quando passa o mouse em cima */
 		.btn-menu:hover {
-			transform: translateY(-5px);
-			/* O botão "flutua" pra cima */
-			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-			/* Sombra aumenta */
+			transform: translateY(-5px);/* O botão "flutua" pra cima */
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);/* Sombra aumenta */
 			background-color: #3498db;
-			/* Fica azul */
 			color: white;
-			/* Texto vira branco */
 		}
 
 		/* Classe específica para a coluna de botões */
 		.col-acoes {
 			text-align: right;
-			/* Joga tudo para a direita */
 			white-space: nowrap;
-			/* Impede que um botão caia para a linha de baixo */
 			min-width: 180px;
-			/* Garante um espaço mínimo para não espremer os botões */
 			padding-right: 20px;
-			/* Um respiro para não colar na borda da tela */
+			
 		}
 
 		/* Efeito de clique (opcional) */

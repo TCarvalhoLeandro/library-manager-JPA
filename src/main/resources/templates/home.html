@@ -12,18 +12,12 @@
         }
 
         .bg {
-            /* --- AQUI É ONDE VOCÊ COLOCA A SUA IMAGEM --- */
-            /* Por enquanto, coloquei um link de uma biblioteca aleatória da internet */
             background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-
-            /* Isso faz a imagem cobrir a tela toda sem repetir */
-            height: 100%; 
+            height: 100%;/*imagem cobrir a tela toda sem repetir */ 
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            
-            /* Filtro escuro para o texto branco aparecer melhor em cima da foto */
-            position: relative;
+            position: relative; /* Filtro escuro para o texto branco aparecer melhor em cima da foto */
         }
         
         /* Uma camada preta semitransparente em cima da imagem */
@@ -56,12 +50,12 @@
         /* Estilo do Botão */
         .botao-entrar {
             padding: 15px 40px;
-            background-color: #4CAF50; /* Verde */
+            background-color: #4CAF50;
             color: white;
-            text-decoration: none; /* Tira o sublinhado do link */
+            text-decoration: none; 
             font-size: 1.2rem;
-            border-radius: 50px; /* Bordas redondass */
-            transition: 0.3s; /* Animação suave */
+            border-radius: 50px; 
+            transition: 0.3s; 
             font-weight: bold;
             border: 2px solid #4CAF50;
         }
@@ -112,7 +106,6 @@
                 <p>Projeto de Sistema Gerenciador de Biblioteca </p>
                 
                 <a href="/biblioteca/livros" class="botao-entrar">📚 Livros</a>
-				<!--a href="/biblioteca/autores" class="botao-entrar btn-laranja">✍🏽 Autores</a-->
 				<a href="/biblioteca/leitores" class="botao-entrar btn-azul">👨🏽‍🏫 Leitores</a>
 				<a href="/biblioteca/emprestimos" class="botao-entrar btn-roxo"> 📆 Empréstimos</a>
             </div>

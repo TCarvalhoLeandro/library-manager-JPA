@@ -28,6 +28,8 @@ public class LivroWebController {
 	@Autowired
 	private AutorService autorService;
 
+	
+	
 	@GetMapping("/livros")
 	public String listaLivros(Model model) {
 
@@ -41,7 +43,7 @@ public class LivroWebController {
 		return "/livros";
 	}
 
-	// METODOS PARA INSERIR UM LEITOR
+	
 	// Rota para ABRIR o formulário vazio
 	@GetMapping("/livros/novo")
 	public String abrirFormulario(Model model) {
@@ -61,7 +63,7 @@ public class LivroWebController {
 		return "redirect:/biblioteca/livros";
 	}
 
-	// --- DELETAR ---
+
 	@GetMapping("/livros/deletar/{id}")
 	public String deletarLivro(@PathVariable Long id, RedirectAttributes attributes) {
 		try {
@@ -73,7 +75,7 @@ public class LivroWebController {
 		return "redirect:/biblioteca/livros";
 	}
 
-	// --- EDITAR (Abrir Formulário) ---
+
 	@GetMapping("/livros/editar/{id}")
 	public String editarLivro(@PathVariable Long id, Model model) {
 		LivroDTO dto = new LivroDTO(service.findById(id));
@@ -84,7 +86,7 @@ public class LivroWebController {
 		return "formulario_livro";
 	}
 
-	// --- EDITAR (Salvar Alterações) ---
+	// Salvar alterações
 	@PostMapping("/livros/editar/{id}")
 	public String atualizarLivro(@PathVariable Long id, @ModelAttribute("livroDTO") LivroDTO dto) {
 		service.update(id, dto);

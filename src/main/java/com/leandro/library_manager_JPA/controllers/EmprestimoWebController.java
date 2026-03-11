@@ -73,10 +73,8 @@ public class EmprestimoWebController {
 			return "redirect:/biblioteca/emprestimos";
 			
 		} catch (IllegalArgumentException | ResourceNotFoundException e) {
-			// Se o livro estiver indisponível (IllegalArgument) ou os IDs não existirem
-			// (NotFound), cai aqui!
-			// Pegamos a mensagem de erro exata que você escreveu no Service ("The book has
-			// already been borrowed!")
+			// Se o livro estiver indisponível  ou os IDs não existirem
+			// Jogamos  a mensagem de erro do Service 
 			attributes.addFlashAttribute("mensagemErro", e.getMessage());
 
 			// Redireciona o usuário de volta para a tela do formulário para ele tentar
