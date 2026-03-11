@@ -14,6 +14,7 @@ import com.leandro.library_manager_JPA.entities.Livro;
 import com.leandro.library_manager_JPA.repositories.EmprestimoRepository;
 import com.leandro.library_manager_JPA.repositories.LeitorRepository;
 import com.leandro.library_manager_JPA.repositories.LivroRepository;
+import com.leandro.library_manager_JPA.resources.exceptions.DatabaseException;
 import com.leandro.library_manager_JPA.services.exceptions.ResourceNotFoundException;
 
 import jakarta.transaction.Transactional;
@@ -117,7 +118,37 @@ public class EmprestimoService {
 	
 	/*
  		 4 Metodo para atualizar no banco de dados um objeto do tipo EMprestimo
-	 */
+	*/
+	@Transactional
+	public void devolucao(Long id) {
+		
+		// Busca um Emprestimo pelo id
+		Emprestimo emp = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Emprestimo não encontrado"));
+		
+		// Verifica se ja nao foi devolvido antes
+		if(emp.getDataEntrega() != null) {
+			throw new IllegalArgumentException("Livro já devolvido!");
+		}
+		
+		// Atualiza a data de entrega para hoje
+		emp.setDataEntrega(LocalDate.now());
+		
+		// Muda o status do livro para disponivel (true)
+		emp.getLivro().setDisponivel(true);
+		
+		// O @Transactional faz o UPDATE automático tanto na tabela tb_emprestimo 
+	    // quanto na tabela tb_livro ao terminar o método!
+		
+		livroRepository.save(emp.getLivro()); // Salva o Livro como disponível
+	    repository.save(emp);
+	}
+	
+	
+	
+	
+	
+	/*
 	public EmprestimoDTO update(Long id) {
 		// Se o Id do Emprestimo nao existir lança ResourceNotFoundException
 		if(!repository.existsById(id)) {
@@ -143,6 +174,7 @@ public class EmprestimoService {
 		emp.setDataEntrega(LocalDate.now());
 		emp.getLivro().setDisponivel(true);
 	}
+	*/
 }
 
 

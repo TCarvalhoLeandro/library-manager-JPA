@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -84,5 +85,48 @@ public class EmprestimoWebController {
 		}
 
 	}
+	
+	// Metodo para receber o clique do botão "Devolver" que vamos colocar no HTML
+	@GetMapping("/emprestimos/devolver/{id}")
+	public String devolverEmprestimo(@PathVariable Long id, RedirectAttributes attributes) {
+		
+		try {
+			emprestimoService.devolucao(id);
+			
+			attributes.addFlashAttribute("mensagemSucesso", "Livro devolvido com sucesso!");
+		}
+		catch(IllegalArgumentException | ResourceNotFoundException e) {
+			
+			attributes.addFlashAttribute("mensagemErro", e.getMessage());
+		}
+		
+		return "redirect:/biblioteca/emprestimos";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

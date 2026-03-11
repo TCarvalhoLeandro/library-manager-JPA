@@ -25,7 +25,7 @@ Próximas Features:
 
 	* Criar métodos insert para Livros, Leitores e Empréstimos
 		No método insert de Livros criar um questionário para inserir um Autor e só depois inserir um livro
-		associado a esse autor.
+		associado a esse autor. - Feito
 	
 	* Criar métodos para atualizar Livros e Leitores - Feito
 	

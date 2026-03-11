@@ -67,13 +67,13 @@ public class EmprestimoResource {
 	
 	/*
 		4 Metodo que vai na camada service e chama o metodo update para atualizar um Emprestimo
-	 */
+	 
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<EmprestimoDTO> update(@PathVariable Long id){
 		EmprestimoDTO emp = service.update(id);
 		return ResponseEntity.ok().body(emp);
 	}
-	
+	*/
 }
 // Por enquanto não vou deletar Emprestimos
 

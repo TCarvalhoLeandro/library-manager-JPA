@@ -135,6 +135,23 @@
 			padding-right: 20px;
 			/* Um respiro para não colar na borda da tela */
 		}
+
+		
+		.btn-devolver {
+			background-color: #3498db;
+			color: white;
+			padding: 5px 10px;
+			text-decoration: none;
+			border-radius: 5px;
+			font-size: 0.9rem;
+			margin-left: 5px;
+			transition: 0.3s;
+		}
+
+		.btn-devolver:hover {
+			background-color: #404ded;
+			transform: translateY(-2px);
+		}
 	</style>
 </head>
 
@@ -151,18 +168,18 @@
 	<table>
 		<thead>
 			<tr>
-				<th>ID</th>
+
 				<th>Leitor</th>
 				<th>Livro</th>
 				<th>Data Empréstimo</th>
 				<th>Previsão Entrega</th>
-				<th>Status</th>
+				<th>Data Entrega</th>
 				<th class="col-acoes">Ações</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="emp : ${meusEmprestimos}">
-				<td th:text="${emp.id}">1</td>
+
 
 				<td th:text="${emp.leitor.nome}">Nome do Leitor</td>
 				<td th:text="${emp.livro.titulo}">Nome do Livro</td>
@@ -171,10 +188,16 @@
 				<td th:text="${#temporals.format(emp.dataPrevisaoEntrega, 'dd/MM/yyyy')}">08/01/2026</td>
 
 				<td>
-					<span th:if="${emp.dataEntrega == null}" class="badge aberto">Pendente</span>
+					<span th:if="${emp.dataEntrega != null}" class="badge devolvido">
+						Devolvido em <span th:text="${#temporals.format(emp.dataEntrega, 'dd/MM/yyyy')}"></span>
+					</span>
+				</td>
+				<td class="col-acoes"> 
+					<a th:if="${emp.dataEntrega == null}"
+						th:href="@{/biblioteca/emprestimos/devolver/{id}(id=${emp.id})}" class="btn-devolver">Devolver</a>
 
-					<span th:unless="${emp.dataEntrega == null}" class="badge devolvido">
-						Devolvido em <span th:text="${#temporals.format(emp.dataEntrega, 'dd/MM')}"></span>
+					<span th:if="${emp.dataEntrega != null}" style="color: #27ae60; font-weight: bold;">
+						Devolvido
 					</span>
 				</td>
 			</tr>
