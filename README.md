@@ -1,8 +1,20 @@
 
 <h1 align="center">Sistema de Gestão de Biblioteca 📚</h1>
 
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/springboot-%236DB33F.svg?style=for-the-badge&logo=springboot&logoColor=white)
+![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
+
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![Design Pattern](https://img.shields.io/badge/Pattern-Repository-blue?style=for-the-badge)
+
 Sistema web desenvolvido para gerir o catálogo de livros e os empréstimos de uma biblioteca, 
 aplicando conceitos avançados de Programação Orientada a Objetos e persistência de dados.
+
+
 
 ## 🛠️ Tecnologias Utilizadas
 
