@@ -29,7 +29,7 @@ Ambiente: Desenvolvido e testado em ambiente Linux (Ubuntu)
 
 [x] Tratamento de exceções e validação de dados
 
-Adicionando outras funcionalidades.
+Adicionando outras funcionalidades ...
 
 ## ☁️ Acesso ao Projeto 
 A aplicação está hospedada na nuvem e pode ser acessada diretamente pelo link abaixo:
