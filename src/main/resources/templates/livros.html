@@ -31,7 +31,7 @@
 			border-radius: 10px;
 			overflow: hidden;
 			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-			
+
 		}
 
 		th,
@@ -41,7 +41,7 @@
 			border-bottom: 1px solid #ddd;
 		}
 
-		
+
 		th {
 			background-color: #4CAF50;
 			color: white;
@@ -91,7 +91,7 @@
 			min-width: 160px;
 			text-align: center;
 			border: 2px solid transparent;
-		
+
 		}
 
 		/* Efeito quando passa o mouse em cima */
@@ -145,6 +145,30 @@
 			background-color: #404ded;
 			transform: translateY(-2px);
 		}
+
+		/* Estilo para mensagens de alerta */
+		.alert {
+			padding: 15px;
+			margin-bottom: 20px;
+			border: 1px solid transparent;
+			border-radius: 4px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		/* Cor para ERRO (Vermelho) */
+		.alert-danger {
+			color: #a94442;
+			background-color: #f2dede;
+			border-color: #ebccd1;
+		}
+
+		/* Cor para SUCESSO (Verde) */
+		.alert-success {
+			color: #3c763d;
+			background-color: #dff0d8;
+			border-color: #d6e9c6;
+		}
 	</style>
 </head>
 
@@ -159,23 +183,33 @@
 
 	<h1>📚 Livros Cadastrados</h1>
 
+	<div th:if="${mensagemErro}" class="alert alert-danger">
+		<span th:text="${mensagemErro}"></span>
+	</div>
+
+	<div th:if="${mensagemSucesso}" class="alert alert-success">
+		<span th:text="${mensagemSucesso}"></span>
+	</div>
+
 	<table>
 		<thead>
 			<tr>
-				<th>ID</th>
+				<!--<th>ID</th>-->
 				<th>Título</th>
 				<th>ISBN</th>
 				<th>Autor</th>
+				<th>Qtd.</th>
 				<th>Status</th>
 				<th class="col-acoes">Ações</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="livro : ${meusLivros}">
-				<td th:text="${livro.id}">1</td>
+				<!--<td th:text="${livro.id}">1</td>-->
 				<td th:text="${livro.titulo}">Titulo</td>
 				<td th:text="${livro.isbn}">xxx-xxxxxx</td>
 				<td th:text="${livro.autor.nome}">Nome do Autor</td>
+				<td th:text="${livro.quantidade}">Quantidade</td>
 				<td>
 					<span th:text="${livro.disponivel} ? 'Disponível' : 'Indisponível'"
 						th:class="${livro.disponivel} ? 'disponivel' : 'indisponivel'">

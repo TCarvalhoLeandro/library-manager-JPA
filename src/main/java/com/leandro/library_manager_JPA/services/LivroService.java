@@ -52,13 +52,27 @@ public class LivroService {
 		
 		//Usuario nao selecionou ID, mas preencheu o Nome do novo autor
 		else if(dto.getNovoAutorNome() != null && !dto.getNovoAutorNome().isEmpty()) {
-			Autor novoAutor = new Autor();
-			novoAutor.setNome(dto.getNovoAutorNome());
-			novoAutor.setNacionalidade(dto.getNovoAutorNacionalidade());
-			novoAutor.setDataNascimento(dto.getNovoAutorNascimento());
 			
-			// salva o Autor primeiro para gerar o ID
-			autorFinal = autorRepository.save(novoAutor);
+			//Vai no banco e procura se o nome já existe (ignorando maiúsculas/minúsculas)
+			Optional<Autor> autorExiste = autorRepository.findByNomeIgnoreCase(dto.getNovoAutorNome().trim());
+			
+			// Se achou, reaproveitamos o autor que já está no banco!
+			if(autorExiste.isPresent()) {
+				autorFinal = autorExiste.get();
+			}
+			//Se não achou (é vazio), aí sim  criamos um novo Autor do zero
+			else {
+				Autor novoAutor = new Autor();
+				novoAutor.setNome(dto.getNovoAutorNome());
+				novoAutor.setNacionalidade(dto.getNovoAutorNacionalidade());
+				novoAutor.setDataNascimento(dto.getNovoAutorNascimento());
+				
+				// salva o Autor primeiro para gerar o ID
+				autorFinal = autorRepository.save(novoAutor);
+			}
+			
+			
+			
 	
 		}
 		// nao fez nem um nem outro
