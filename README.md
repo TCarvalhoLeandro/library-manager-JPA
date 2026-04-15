@@ -1,5 +1,5 @@
 
-<h1 align="center">Sistema de Gestão de Biblioteca 📚</h1>
+<h1 align="center">Library Management System 📚</h1>
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/springboot-%236DB33F.svg?style=for-the-badge&logo=springboot&logoColor=white)
